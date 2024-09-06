@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaFire Cloud Storage</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>MediaFire Cloud Storage</h1>
+    <button id="authButton">Authenticate</button>
+    <div id="fileList"></div>
+
+    <script>
+        const apiKey = 'YOUR_MEDIAFIRE_API_KEY'; // Place your API Key here
+
+        function authenticate() {
+            // Ideally, you should implement OAuth2.0 for secure authentication here
+            alert('Please implement authentication using MediaFire API documentation.');
+        }
+
+        function listFiles() {
+            // Example request to list files linked to the user
+            $.ajax({
+                url: 'https://www.mediafire.com/api/1.5/file/get_links.php',
+                type: 'GET',
+                data: {
+                    api_key: apiKey,
+                    // include parameters required for authentication and request
+                },
+                success: function(response) {
+                    // Handle the response to display files
+                    if (response.result === 'Success' && response.links) {
+                        let filesHtml = '<ul>';
+                        response.links.forEach(file => {
+                            filesHtml += `<li>${file.filename}</li>`;
+                        });
+                        filesHtml += '</ul>';
+                        $('#fileList').html(filesHtml);
+                    } else {
+                        $('#fileList').html('No files found or error occurred.');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error fetching files:', error);
+                    $('#fileList').html('An error occurred while fetching files.');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#authButton').click(function() {
+                authenticate(); // Trigger authentication
+            });
+        });
+    </script>
+</body>
+</html>

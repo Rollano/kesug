@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termux Tools Installation Guide</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            background: #c0c0c0; /* Light gray background */
+            color: #000; /* Black text color */
+        }
+        
+        header {
+            background: #000080; /* Navy blue header */
+            color: #fff; /* White text */
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 2px solid #000;
+        }
+
+        header h1 {
+            font-size: 22px; /* Adjust font size */
+            margin: 0;
+            font-family: 'Tahoma', sans-serif; /* Classic Windows font */
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            color: #fff; /* White text */
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            background: #a0a0a0; /* Light gray buttons */
+            border: 1px solid #808080; /* Darker gray border */
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        header nav a:hover {
+            background-color: #0c0c0c; /* Dark gray on hover */
+            color: #fff; /* Keep text white */
+        }
+
+        .content {
+            padding: 20px;
+            min-height: calc(100vh - 60px); /* Adjust height to account for the header */
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #000080; /* Navy blue for headings */
+        }
+
+        pre {
+            background-color: #ffffff; /* White background for code blocks */
+            border: 1px solid #808080; /* Gray border */
+            padding: 10px;
+            border-radius: 2px;
+            color: #000; /* Black text */
+            font-family: 'Courier New', monospace; /* Monospace font */
+            overflow: auto; /* Scroll if too long */
+        }
+
+        .terminal {
+            background: #e6e6e6; /* Light gray background for terminal */
+            color: #000; /* Black text */
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #808080; /* Darker gray border */
+            border-radius: 2px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .your-info {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #0000ff; /* Link color */
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: underline;
+            padding: 5px 0;
+        }
+
+        .your-info:hover {
+            color: #ff0000; /* Change color on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Termux Tools Installation Guide</h1>
+        <nav>
+            <a href="page1.html">Page 1</a>
+            <a href="page2.html">Page 2</a>
+            <a href="page3.html">Page 3</a>
+        </nav>
+    </header>
+
+    <div class="content" id="content">
+        <h2>1. Tool: nmap</h2>
+        <p><strong>Description:</strong> Network scanner.</p>
+        <pre>pkg update
+pkg install nmap
+        </pre>
+
+        <h2>2. Tool: git</h2>
+        <p><strong>Description:</strong> Version control system.</p>
+        <pre>pkg update
+pkg install git
+        </pre>
+
+        <h2>3. Tool: python</h2>
+        <p><strong>Description:</strong> Python programming language.</p>
+        <pre>pkg update
+pkg install python
+        </pre>
+
+        <h2>4. Tool: curl</h2>
+        <p><strong>Description:</strong> Command-line tool for transferring data.</p>
+        <pre>pkg update
+pkg install curl
+        </pre>
+
+        <h2>5. Tool: wget</h2>
+        <p><strong>Description:</strong> Utility for downloading files from the web.</p>
+        <pre>pkg update
+pkg install wget
+        </pre>
+
+        <h2>6. Tool: vim</h2>
+        <p><strong>Description:</strong> Text editor.</p>
+        <pre>pkg update
+pkg install vim
+        </pre>
+
+        <h2>7. Tool: clang</h2>
+        <p><strong>Description:</strong> C/C++ compiler.</p>
+        <pre>pkg update
+pkg install clang
+        </pre>
+
+        <h2>8. Tool: htop</h2>
+        <p><strong>Description:</strong> Interactive process viewer.</p>
+        <pre>pkg update
+pkg install htop
+        </pre>
+
+        <h2>9. Tool: php</h2>
+        <p><strong>Description:</strong> PHP programming language.</p>
+        <pre>pkg update
+pkg install php
+        </pre>
+
+        <h2>10. Tool: fakeroot</h2>
+        <p><strong>Description:</strong> Tool to create a fake root environment.</p>
+        <pre>pkg update
+pkg install fakeroot
+        </pre>
+
+        <p>For more tools and detailed instructions, visit the official Termux Wiki or GitHub repositories for each tool.</p>
+
+        <div class="terminal" id="terminal">
+            <div class="output" id="terminalOutput"></div>
+            <a href="#" id="openInfo" class="your-info" target="_blank">Your Info</a>
+        </div>
+    </div>
+
+    <script>
+        // Fetch IP address and phone model
+        function fetchDeviceInfo() {
+            let ipAddress = 'Fetching...';
+            let phoneModel = navigator.userAgent;
+
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    ipAddress = data.ip;
+                    displayInfo(ipAddress, phoneModel);
+                })
+                .catch(() => {
+                    ipAddress = 'Could not fetch IP';
+                    displayInfo(ipAddress, phoneModel);
+                });
+        }
+
+        function displayInfo(ip, model) {
+            const terminalOutput = document.getElementById('terminalOutput');
+            terminalOutput.textContent = `IP Address: ${ip}\nPhone Model: ${model}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('content').style.display = 'block';
+            fetchDeviceInfo();
+        });
+    </script>
+</body>
+</html>

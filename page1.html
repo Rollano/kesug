@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installing XFCE Desktop with X11 in Termux</title>
+    <style>
+        body {
+            font-family: 'MS Sans Serif', sans-serif;
+            background-color: #C0C0C0; /* Light gray background */
+            color: #000000; /* Black text */
+            margin: 20px;
+            padding: 0;
+        }
+        
+        h1, h2 {
+            color: #000080; /* Navy blue text */
+            border-bottom: 2px solid #000080; /* Blue underline */
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        p, ul, li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        code {
+            background-color: #FFFFFF; /* White background for code blocks */
+            border: 1px solid #000000; /* Black border */
+            padding: 2px 4px;
+            border-radius: 2px;
+            display: inline-block; /* Inline code */
+            color: #000080;
+        }
+
+        ul {
+            list-style-type: none; 
+            padding: 0; /* Removes bullets and padding */
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Button Styling */
+        a.button {
+            display: inline-block;
+            padding: 5px 15px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #FFFFFF; /* White text */
+            background-color: #000080; /* Blue background */
+            text-decoration: none;
+            border: 2px outset #C0C0C0; /* 3D button effect */
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #0000FF; /* Lighter blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>How to Install XFCE Desktop with X11 in Termux (No Root)</h1>
+    
+    <p>This tutorial will guide you through the process of installing the XFCE desktop environment along with X11 on Termux without needing root access.</p>
+    
+    <h2>Step 1: Update and Upgrade Termux Packages</h2>
+    <p>First, update and upgrade your Termux packages to ensure everything is up to date:</p>
+    <code>pkg update && pkg upgrade</code>
+    
+    <h2>Step 2: Install Necessary Packages</h2>
+    <p>Next, install the necessary packages for XFCE and X11:</p>
+    <code>pkg install xfce4 xfce4-terminal</code>
+    <code>pkg install x11-repo</code>
+    <code>pkg install xorg-server</code>
+    <p>The <code>xorg-server</code> package provides the X11 server that allows you to run graphical applications.</p>
+
+    <h2>Step 3: Set Up VNC Server</h2>
+    <p>To display the XFCE desktop environment, you'll need a VNC server. Install it with:</p>
+    <code>pkg install tigervnc</code>
+
+    <h2>Step 4: Configure VNC Server</h2>
+    <p>Now, set up the VNC server by configuring the display resolution and starting the server:</p>
+    <code>vncserver -localhost</code>
+    <p>You'll be prompted to set a password. Remember this password as you'll need it to connect to the VNC server.</p>
+
+    <h2>Step 5: Start XFCE Desktop</h2>
+    <p>Create a startup script to start the XFCE desktop environment whenever you start the VNC server:</p>
+    <code>echo "startxfce4 &" > ~/.vnc/xstartup</code>
+    <p>Make the script executable:</p>
+    <code>chmod +x ~/.vnc/xstartup</code>
+
+    <h2>Step 6: Connect to the VNC Server</h2>
+    <p>To access your XFCE desktop, you'll need a VNC viewer. Download a VNC viewer app from the Play Store, like VNC Viewer by RealVNC.</p>
+    <p>Open the VNC viewer app and connect to the following address:</p>
+    <code>localhost:1</code>
+    <p>Enter the password you set earlier to access your XFCE desktop.</p>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+        <li>If you encounter issues with the VNC connection, ensure that the VNC server is running and that you've correctly entered the VNC password.</li>
+        <li>If the XFCE desktop doesn't start, verify that the xstartup script is correctly set up and executable.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>By following these steps, you should now have a fully functional XFCE desktop environment running on Termux with X11, all without needing root access. Enjoy your new graphical interface!</p>
+
+    <a href="index.html" class="button">Back to Main Page</a>
+</body>
+</html>
